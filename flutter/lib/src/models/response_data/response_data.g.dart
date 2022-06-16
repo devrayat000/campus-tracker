@@ -8,7 +8,7 @@ part of 'response_data.dart';
 
 _$ResponseDataTest _$$ResponseDataTestFromJson(Map<String, dynamic> json) =>
     _$ResponseDataTest(
-      id: json['id'] as String,
+      id: json['id'] as int,
       attributes: Test.fromJson(json['attributes'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$ResponseDataTestToJson(_$ResponseDataTest instance) =>
 
 _$ResponseDataNotice _$$ResponseDataNoticeFromJson(Map<String, dynamic> json) =>
     _$ResponseDataNotice(
-      id: json['id'] as String,
+      id: json['id'] as int,
       attributes: Notice.fromJson(json['attributes'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );

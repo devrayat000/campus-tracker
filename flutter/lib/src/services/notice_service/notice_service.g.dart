@@ -10,7 +10,7 @@ part of 'notice_service.dart';
 
 class _NoticeClient implements NoticeClient {
   _NoticeClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'http://localhost:1337/api/';
+    baseUrl ??= 'http://10.0.2.2:1337/api/';
   }
 
   final Dio _dio;
@@ -18,7 +18,7 @@ class _NoticeClient implements NoticeClient {
   String? baseUrl;
 
   @override
-  Future<MyResponseNotice> tests() async {
+  Future<MyResponseNotice> notices() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

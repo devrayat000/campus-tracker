@@ -16,12 +16,12 @@ abstract class IResponseAttribute {
 @freezed
 class ResponseData with _$ResponseData {
   const factory ResponseData.test({
-    required String id,
+    required int id,
     required Test attributes,
   }) = ResponseDataTest;
 
   const factory ResponseData.notice({
-    required String id,
+    required int id,
     required Notice attributes,
   }) = ResponseDataNotice;
 

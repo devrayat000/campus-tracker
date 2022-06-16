@@ -10,7 +10,7 @@ part of 'test_service.dart';
 
 class _TestClient implements TestClient {
   _TestClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'http://localhost:1337/api/';
+    baseUrl ??= 'http://10.0.2.2:1337/api/';
   }
 
   final Dio _dio;

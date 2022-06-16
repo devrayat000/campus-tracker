@@ -29,23 +29,23 @@ ResponseData _$ResponseDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ResponseData {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, Test attributes) test,
-    required TResult Function(String id, Notice attributes) notice,
+    required TResult Function(int id, Test attributes) test,
+    required TResult Function(int id, Notice attributes) notice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String id, Test attributes)? test,
-    TResult Function(String id, Notice attributes)? notice,
+    TResult Function(int id, Test attributes)? test,
+    TResult Function(int id, Notice attributes)? notice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, Test attributes)? test,
-    TResult Function(String id, Notice attributes)? notice,
+    TResult Function(int id, Test attributes)? test,
+    TResult Function(int id, Notice attributes)? notice,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,7 +79,7 @@ abstract class $ResponseDataCopyWith<$Res> {
   factory $ResponseDataCopyWith(
           ResponseData value, $Res Function(ResponseData) then) =
       _$ResponseDataCopyWithImpl<$Res>;
-  $Res call({String id});
+  $Res call({int id});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class _$ResponseDataCopyWithImpl<$Res> implements $ResponseDataCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -110,7 +110,7 @@ abstract class _$$ResponseDataTestCopyWith<$Res>
           _$ResponseDataTest value, $Res Function(_$ResponseDataTest) then) =
       __$$ResponseDataTestCopyWithImpl<$Res>;
   @override
-  $Res call({String id, Test attributes});
+  $Res call({int id, Test attributes});
 }
 
 /// @nodoc
@@ -133,7 +133,7 @@ class __$$ResponseDataTestCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       attributes: attributes == freezed
           ? _value.attributes
           : attributes // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class _$ResponseDataTest implements ResponseDataTest {
       _$$ResponseDataTestFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final Test attributes;
 
@@ -190,8 +190,8 @@ class _$ResponseDataTest implements ResponseDataTest {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, Test attributes) test,
-    required TResult Function(String id, Notice attributes) notice,
+    required TResult Function(int id, Test attributes) test,
+    required TResult Function(int id, Notice attributes) notice,
   }) {
     return test(id, attributes);
   }
@@ -199,8 +199,8 @@ class _$ResponseDataTest implements ResponseDataTest {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String id, Test attributes)? test,
-    TResult Function(String id, Notice attributes)? notice,
+    TResult Function(int id, Test attributes)? test,
+    TResult Function(int id, Notice attributes)? notice,
   }) {
     return test?.call(id, attributes);
   }
@@ -208,8 +208,8 @@ class _$ResponseDataTest implements ResponseDataTest {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, Test attributes)? test,
-    TResult Function(String id, Notice attributes)? notice,
+    TResult Function(int id, Test attributes)? test,
+    TResult Function(int id, Notice attributes)? notice,
     required TResult orElse(),
   }) {
     if (test != null) {
@@ -257,14 +257,14 @@ class _$ResponseDataTest implements ResponseDataTest {
 
 abstract class ResponseDataTest implements ResponseData {
   const factory ResponseDataTest(
-      {required final String id,
+      {required final int id,
       required final Test attributes}) = _$ResponseDataTest;
 
   factory ResponseDataTest.fromJson(Map<String, dynamic> json) =
       _$ResponseDataTest.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   Test get attributes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -279,7 +279,7 @@ abstract class _$$ResponseDataNoticeCopyWith<$Res>
           $Res Function(_$ResponseDataNotice) then) =
       __$$ResponseDataNoticeCopyWithImpl<$Res>;
   @override
-  $Res call({String id, Notice attributes});
+  $Res call({int id, Notice attributes});
 }
 
 /// @nodoc
@@ -302,7 +302,7 @@ class __$$ResponseDataNoticeCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       attributes: attributes == freezed
           ? _value.attributes
           : attributes // ignore: cast_nullable_to_non_nullable
@@ -322,7 +322,7 @@ class _$ResponseDataNotice implements ResponseDataNotice {
       _$$ResponseDataNoticeFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final Notice attributes;
 
@@ -360,8 +360,8 @@ class _$ResponseDataNotice implements ResponseDataNotice {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, Test attributes) test,
-    required TResult Function(String id, Notice attributes) notice,
+    required TResult Function(int id, Test attributes) test,
+    required TResult Function(int id, Notice attributes) notice,
   }) {
     return notice(id, attributes);
   }
@@ -369,8 +369,8 @@ class _$ResponseDataNotice implements ResponseDataNotice {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String id, Test attributes)? test,
-    TResult Function(String id, Notice attributes)? notice,
+    TResult Function(int id, Test attributes)? test,
+    TResult Function(int id, Notice attributes)? notice,
   }) {
     return notice?.call(id, attributes);
   }
@@ -378,8 +378,8 @@ class _$ResponseDataNotice implements ResponseDataNotice {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, Test attributes)? test,
-    TResult Function(String id, Notice attributes)? notice,
+    TResult Function(int id, Test attributes)? test,
+    TResult Function(int id, Notice attributes)? notice,
     required TResult orElse(),
   }) {
     if (notice != null) {
@@ -427,14 +427,14 @@ class _$ResponseDataNotice implements ResponseDataNotice {
 
 abstract class ResponseDataNotice implements ResponseData {
   const factory ResponseDataNotice(
-      {required final String id,
+      {required final int id,
       required final Notice attributes}) = _$ResponseDataNotice;
 
   factory ResponseDataNotice.fromJson(Map<String, dynamic> json) =
       _$ResponseDataNotice.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   Notice get attributes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
