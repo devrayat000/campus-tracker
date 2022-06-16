@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 MyResponse _$MyResponseFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'test':
-      return _MyResponseTest.fromJson(json);
+      return MyResponseTest.fromJson(json);
     case 'notice':
-      return _MyResponseNotice.fromJson(json);
+      return MyResponseNotice.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'MyResponse',
@@ -53,20 +53,20 @@ mixin _$MyResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_MyResponseTest value) test,
-    required TResult Function(_MyResponseNotice value) notice,
+    required TResult Function(MyResponseTest value) test,
+    required TResult Function(MyResponseNotice value) notice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MyResponseTest value)? test,
-    TResult Function(_MyResponseNotice value)? notice,
+    TResult Function(MyResponseTest value)? test,
+    TResult Function(MyResponseNotice value)? notice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_MyResponseTest value)? test,
-    TResult Function(_MyResponseNotice value)? notice,
+    TResult Function(MyResponseTest value)? test,
+    TResult Function(MyResponseNotice value)? notice,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,11 +115,11 @@ class _$MyResponseCopyWithImpl<$Res> implements $MyResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_MyResponseTestCopyWith<$Res>
+abstract class _$$MyResponseTestCopyWith<$Res>
     implements $MyResponseCopyWith<$Res> {
-  factory _$$_MyResponseTestCopyWith(
-          _$_MyResponseTest value, $Res Function(_$_MyResponseTest) then) =
-      __$$_MyResponseTestCopyWithImpl<$Res>;
+  factory _$$MyResponseTestCopyWith(
+          _$MyResponseTest value, $Res Function(_$MyResponseTest) then) =
+      __$$MyResponseTestCopyWithImpl<$Res>;
   @override
   $Res call({List<ResponseDataTest> data, ResponseMeta meta});
 
@@ -128,22 +128,22 @@ abstract class _$$_MyResponseTestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MyResponseTestCopyWithImpl<$Res>
+class __$$MyResponseTestCopyWithImpl<$Res>
     extends _$MyResponseCopyWithImpl<$Res>
-    implements _$$_MyResponseTestCopyWith<$Res> {
-  __$$_MyResponseTestCopyWithImpl(
-      _$_MyResponseTest _value, $Res Function(_$_MyResponseTest) _then)
-      : super(_value, (v) => _then(v as _$_MyResponseTest));
+    implements _$$MyResponseTestCopyWith<$Res> {
+  __$$MyResponseTestCopyWithImpl(
+      _$MyResponseTest _value, $Res Function(_$MyResponseTest) _then)
+      : super(_value, (v) => _then(v as _$MyResponseTest));
 
   @override
-  _$_MyResponseTest get _value => super._value as _$_MyResponseTest;
+  _$MyResponseTest get _value => super._value as _$MyResponseTest;
 
   @override
   $Res call({
     Object? data = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_$_MyResponseTest(
+    return _then(_$MyResponseTest(
       data: data == freezed
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -158,16 +158,16 @@ class __$$_MyResponseTestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MyResponseTest implements _MyResponseTest {
-  const _$_MyResponseTest(
+class _$MyResponseTest implements MyResponseTest {
+  const _$MyResponseTest(
       {required final List<ResponseDataTest> data,
       required this.meta,
       final String? $type})
       : _data = data,
         $type = $type ?? 'test';
 
-  factory _$_MyResponseTest.fromJson(Map<String, dynamic> json) =>
-      _$$_MyResponseTestFromJson(json);
+  factory _$MyResponseTest.fromJson(Map<String, dynamic> json) =>
+      _$$MyResponseTestFromJson(json);
 
   final List<ResponseDataTest> _data;
   @override
@@ -191,7 +191,7 @@ class _$_MyResponseTest implements _MyResponseTest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MyResponseTest &&
+            other is _$MyResponseTest &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality().equals(other.meta, meta));
   }
@@ -205,8 +205,8 @@ class _$_MyResponseTest implements _MyResponseTest {
 
   @JsonKey(ignore: true)
   @override
-  _$$_MyResponseTestCopyWith<_$_MyResponseTest> get copyWith =>
-      __$$_MyResponseTestCopyWithImpl<_$_MyResponseTest>(this, _$identity);
+  _$$MyResponseTestCopyWith<_$MyResponseTest> get copyWith =>
+      __$$MyResponseTestCopyWithImpl<_$MyResponseTest>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -244,8 +244,8 @@ class _$_MyResponseTest implements _MyResponseTest {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_MyResponseTest value) test,
-    required TResult Function(_MyResponseNotice value) notice,
+    required TResult Function(MyResponseTest value) test,
+    required TResult Function(MyResponseNotice value) notice,
   }) {
     return test(this);
   }
@@ -253,8 +253,8 @@ class _$_MyResponseTest implements _MyResponseTest {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MyResponseTest value)? test,
-    TResult Function(_MyResponseNotice value)? notice,
+    TResult Function(MyResponseTest value)? test,
+    TResult Function(MyResponseNotice value)? notice,
   }) {
     return test?.call(this);
   }
@@ -262,8 +262,8 @@ class _$_MyResponseTest implements _MyResponseTest {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_MyResponseTest value)? test,
-    TResult Function(_MyResponseNotice value)? notice,
+    TResult Function(MyResponseTest value)? test,
+    TResult Function(MyResponseNotice value)? notice,
     required TResult orElse(),
   }) {
     if (test != null) {
@@ -274,33 +274,33 @@ class _$_MyResponseTest implements _MyResponseTest {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MyResponseTestToJson(this);
+    return _$$MyResponseTestToJson(this);
   }
 }
 
-abstract class _MyResponseTest implements MyResponse {
-  const factory _MyResponseTest(
+abstract class MyResponseTest implements MyResponse {
+  const factory MyResponseTest(
       {required final List<ResponseDataTest> data,
-      required final ResponseMeta meta}) = _$_MyResponseTest;
+      required final ResponseMeta meta}) = _$MyResponseTest;
 
-  factory _MyResponseTest.fromJson(Map<String, dynamic> json) =
-      _$_MyResponseTest.fromJson;
+  factory MyResponseTest.fromJson(Map<String, dynamic> json) =
+      _$MyResponseTest.fromJson;
 
   List<ResponseDataTest> get data => throw _privateConstructorUsedError;
   @override
   ResponseMeta get meta => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_MyResponseTestCopyWith<_$_MyResponseTest> get copyWith =>
+  _$$MyResponseTestCopyWith<_$MyResponseTest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_MyResponseNoticeCopyWith<$Res>
+abstract class _$$MyResponseNoticeCopyWith<$Res>
     implements $MyResponseCopyWith<$Res> {
-  factory _$$_MyResponseNoticeCopyWith(
-          _$_MyResponseNotice value, $Res Function(_$_MyResponseNotice) then) =
-      __$$_MyResponseNoticeCopyWithImpl<$Res>;
+  factory _$$MyResponseNoticeCopyWith(
+          _$MyResponseNotice value, $Res Function(_$MyResponseNotice) then) =
+      __$$MyResponseNoticeCopyWithImpl<$Res>;
   @override
   $Res call({List<ResponseDataNotice> data, ResponseMeta meta});
 
@@ -309,22 +309,22 @@ abstract class _$$_MyResponseNoticeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MyResponseNoticeCopyWithImpl<$Res>
+class __$$MyResponseNoticeCopyWithImpl<$Res>
     extends _$MyResponseCopyWithImpl<$Res>
-    implements _$$_MyResponseNoticeCopyWith<$Res> {
-  __$$_MyResponseNoticeCopyWithImpl(
-      _$_MyResponseNotice _value, $Res Function(_$_MyResponseNotice) _then)
-      : super(_value, (v) => _then(v as _$_MyResponseNotice));
+    implements _$$MyResponseNoticeCopyWith<$Res> {
+  __$$MyResponseNoticeCopyWithImpl(
+      _$MyResponseNotice _value, $Res Function(_$MyResponseNotice) _then)
+      : super(_value, (v) => _then(v as _$MyResponseNotice));
 
   @override
-  _$_MyResponseNotice get _value => super._value as _$_MyResponseNotice;
+  _$MyResponseNotice get _value => super._value as _$MyResponseNotice;
 
   @override
   $Res call({
     Object? data = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_$_MyResponseNotice(
+    return _then(_$MyResponseNotice(
       data: data == freezed
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -339,16 +339,16 @@ class __$$_MyResponseNoticeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MyResponseNotice implements _MyResponseNotice {
-  const _$_MyResponseNotice(
+class _$MyResponseNotice implements MyResponseNotice {
+  const _$MyResponseNotice(
       {required final List<ResponseDataNotice> data,
       required this.meta,
       final String? $type})
       : _data = data,
         $type = $type ?? 'notice';
 
-  factory _$_MyResponseNotice.fromJson(Map<String, dynamic> json) =>
-      _$$_MyResponseNoticeFromJson(json);
+  factory _$MyResponseNotice.fromJson(Map<String, dynamic> json) =>
+      _$$MyResponseNoticeFromJson(json);
 
   final List<ResponseDataNotice> _data;
   @override
@@ -372,7 +372,7 @@ class _$_MyResponseNotice implements _MyResponseNotice {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MyResponseNotice &&
+            other is _$MyResponseNotice &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality().equals(other.meta, meta));
   }
@@ -386,8 +386,8 @@ class _$_MyResponseNotice implements _MyResponseNotice {
 
   @JsonKey(ignore: true)
   @override
-  _$$_MyResponseNoticeCopyWith<_$_MyResponseNotice> get copyWith =>
-      __$$_MyResponseNoticeCopyWithImpl<_$_MyResponseNotice>(this, _$identity);
+  _$$MyResponseNoticeCopyWith<_$MyResponseNotice> get copyWith =>
+      __$$MyResponseNoticeCopyWithImpl<_$MyResponseNotice>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -425,8 +425,8 @@ class _$_MyResponseNotice implements _MyResponseNotice {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_MyResponseTest value) test,
-    required TResult Function(_MyResponseNotice value) notice,
+    required TResult Function(MyResponseTest value) test,
+    required TResult Function(MyResponseNotice value) notice,
   }) {
     return notice(this);
   }
@@ -434,8 +434,8 @@ class _$_MyResponseNotice implements _MyResponseNotice {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MyResponseTest value)? test,
-    TResult Function(_MyResponseNotice value)? notice,
+    TResult Function(MyResponseTest value)? test,
+    TResult Function(MyResponseNotice value)? notice,
   }) {
     return notice?.call(this);
   }
@@ -443,8 +443,8 @@ class _$_MyResponseNotice implements _MyResponseNotice {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_MyResponseTest value)? test,
-    TResult Function(_MyResponseNotice value)? notice,
+    TResult Function(MyResponseTest value)? test,
+    TResult Function(MyResponseNotice value)? notice,
     required TResult orElse(),
   }) {
     if (notice != null) {
@@ -455,23 +455,23 @@ class _$_MyResponseNotice implements _MyResponseNotice {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MyResponseNoticeToJson(this);
+    return _$$MyResponseNoticeToJson(this);
   }
 }
 
-abstract class _MyResponseNotice implements MyResponse {
-  const factory _MyResponseNotice(
+abstract class MyResponseNotice implements MyResponse {
+  const factory MyResponseNotice(
       {required final List<ResponseDataNotice> data,
-      required final ResponseMeta meta}) = _$_MyResponseNotice;
+      required final ResponseMeta meta}) = _$MyResponseNotice;
 
-  factory _MyResponseNotice.fromJson(Map<String, dynamic> json) =
-      _$_MyResponseNotice.fromJson;
+  factory MyResponseNotice.fromJson(Map<String, dynamic> json) =
+      _$MyResponseNotice.fromJson;
 
   List<ResponseDataNotice> get data => throw _privateConstructorUsedError;
   @override
   ResponseMeta get meta => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_MyResponseNoticeCopyWith<_$_MyResponseNotice> get copyWith =>
+  _$$MyResponseNoticeCopyWith<_$MyResponseNotice> get copyWith =>
       throw _privateConstructorUsedError;
 }

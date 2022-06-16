@@ -10,12 +10,12 @@ class MyResponse with _$MyResponse {
   const factory MyResponse.test({
     required List<ResponseDataTest> data,
     required ResponseMeta meta,
-  }) = _MyResponseTest;
+  }) = MyResponseTest;
 
   const factory MyResponse.notice({
     required List<ResponseDataNotice> data,
     required ResponseMeta meta,
-  }) = _MyResponseNotice;
+  }) = MyResponseNotice;
 
   factory MyResponse.fromJson(Map<String, dynamic> json) =>
       _$MyResponseFromJson(json);
