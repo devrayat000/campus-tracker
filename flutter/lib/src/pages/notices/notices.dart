@@ -1,5 +1,8 @@
+import 'package:campus_tracker/src/bloc/notice_bloc.dart';
 import 'package:campus_tracker/src/models/notice/notice.dart';
 import 'package:campus_tracker/src/streams/notice_stream.dart';
+import 'package:campus_tracker/src/theme/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,29 +13,51 @@ class NoticePage extends StatefulWidget {
   State<NoticePage> createState() => _NoticePageState();
 }
 
-class _NoticePageState extends State<NoticePage> {
-  late final NoticeStream noticeStream;
+class _NoticePageState
+    extends State<NoticePage> /*with AutomaticKeepAliveClientMixin */ {
+  late final NoticeCubit noticeCubit;
+  late final Stream<Set<NoticeRaw>> noticeStream;
+  late final ScrollController _scrollController;
+
+  // @override
+  // final wantKeepAlive = false;
 
   @override
   void initState() {
     super.initState();
-    noticeStream = RepositoryProvider.of<NoticeStream>(context);
-    noticeStream.init();
+    print('noti page initialized');
+    noticeCubit = RepositoryProvider.of<NoticeCubit>(context);
+    noticeCubit.init();
+    noticeStream = noticeCubit.stream;
+
+    _scrollController = ScrollController();
   }
 
   @override
   void dispose() {
-    noticeStream.dispose();
+    noticeCubit.dispose();
+    _scrollController.dispose();
+    print('noti page disposed');
     super.dispose();
   }
 
-  final _list = <NoticeRaw>[];
-
   @override
   Widget build(BuildContext context) {
+    // super.build(context);
     return Scaffold(
-      body: StreamBuilder<NoticeRaw>(
-        stream: noticeStream.listen(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("Notice"),
+        backgroundColor: Colors.white,
+        titleTextStyle: TextStyle(
+          fontSize: 32,
+          color: Colors.blueGrey[900],
+          fontWeight: FontWeight.bold,
+        ),
+        elevation: 0,
+      ),
+      body: StreamBuilder<Set<NoticeRaw>>(
+        stream: noticeStream,
         builder: (context, snapshot) {
           print(snapshot.data);
           print(snapshot.hasData);
@@ -40,22 +65,40 @@ class _NoticePageState extends State<NoticePage> {
 
           if (snapshot.hasData) {
             final data = snapshot.data!;
-            _list.add(data);
+            return RefreshIndicator(
+              onRefresh: noticeCubit.reload,
+              child: CupertinoScrollbar(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(4.0),
+                  itemCount: data.length,
+                  controller: _scrollController,
+                  // physics: BouncingScrollPhysics(),
+                  addAutomaticKeepAlives: false,
+                  itemBuilder: (context, index) {
+                    final notice = data.elementAt(index);
 
-            return ListView.builder(
-              itemCount: _list.length,
-              itemBuilder: (context, index) {
-                final notice = _list[index];
-
-                return ListTile(
-                  key: ValueKey('notice-${notice.id}'),
-                  title: Text(notice.title),
-                );
-              },
+                    return Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Material(
+                        elevation: 3,
+                        color: noticeColors[index % noticeColors.length],
+                        borderRadius: BorderRadius.circular(24.0),
+                        child: ListTile(
+                          key: ValueKey('notice-${notice.id}'),
+                          title: Text(notice.title),
+                          subtitle: Text(notice.details),
+                          style: ListTileStyle.list,
+                          textColor: Colors.white,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             );
           }
-          return Center(
-            child: Text('NNN'),
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         },
       ),

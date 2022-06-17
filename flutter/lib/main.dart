@@ -1,88 +1,60 @@
-import 'package:campus_tracker/src/bloc/first_time.dart';
+import 'package:campus_tracker/src/config.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
+import 'package:campus_tracker/src/bloc/first_time.dart';
+import 'package:campus_tracker/src/services/notification/notification_service.dart';
+import 'package:campus_tracker/src/services/socket/socket_service.dart';
 import 'package:campus_tracker/src/pages/intro/intro.dart';
 import 'package:campus_tracker/src/bloc/notice_bloc.dart';
-import 'package:campus_tracker/src/streams/notice_stream.dart';
 import 'package:campus_tracker/src/pages/notices/notices.dart';
 import 'package:campus_tracker/src/pages/tests/tests.dart';
 import 'package:campus_tracker/src/services/notice_service/notice_service.dart';
 import 'package:campus_tracker/src/services/test_service/test_service.dart';
 
-IO.Socket initSocket() {
-  print('creating socket');
-  final socket = IO.io(
-    'http://10.0.2.2:1337/',
-    IO.OptionBuilder()
-        .setTransports(['websocket'])
-        .disableAutoConnect()
-        .build(),
-  );
-
-  socket.onError((data) {
-    print('error: $data');
-  });
-
-  socket.onConnect((_) {
-    print('connected');
-  });
-
-  return socket.connect();
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-        channelKey: 'notice_notification',
-        channelName: 'Notice Notification',
-        channelDescription: 'Notification channel for basic tests',
-        defaultColor: Color(0xFF9D50DD),
-        ledColor: Colors.white,
-        importance: NotificationImportance.High,
-      ),
-    ],
-  );
+  await initializeNotifications();
 
   final dio = Dio();
 
   final storage = await HydratedStorage.build(
       storageDirectory: await getTemporaryDirectory());
+  await Hive.initFlutter();
+  await Hive.openBox('notice_notified');
 
   HydratedBlocOverrides.runZoned(
     storage: storage,
     () => runApp(
       MultiRepositoryProvider(
         providers: [
-          RepositoryProvider<NoticeClient>(create: (_) => NoticeClient(dio)),
-          RepositoryProvider<TestClient>(create: (_) => TestClient(dio)),
-          RepositoryProvider<IO.Socket>(
-            create: (_) => initSocket(),
+          RepositoryProvider<NoticeClient>(
+              create: (_) => NoticeClient(dio, baseUrl: AppConfig.apiUrl)),
+          RepositoryProvider<TestClient>(
+              create: (_) => TestClient(dio, baseUrl: AppConfig.apiUrl)),
+          RepositoryProvider<SocketService>(
+            create: (_) => SocketService(),
+            lazy: false,
           ),
-          RepositoryProvider<NoticeStream>(
-            create: (context) => NoticeStream(
-              RepositoryProvider.of<IO.Socket>(context),
-              RepositoryProvider.of<NoticeClient>(context),
-            ),
-          ),
+          // RepositoryProvider<NoticeStream>(
+          //   create: (context) => NoticeStream(
+          //     RepositoryProvider.of<SocketService>(context),
+          //     RepositoryProvider.of<NoticeClient>(context),
+          //   ),
+          // ),
         ],
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) =>
-                  NoticeCubit(RepositoryProvider.of<IO.Socket>(context)),
-              lazy: false,
-            ),
+                create: (context) =>
+                    NoticeCubit(RepositoryProvider.of<SocketService>(context))),
             BlocProvider(
               create: (context) => FirstTimeCubit(),
             ),
@@ -104,7 +76,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        backgroundColor: Colors.white,
       ),
+      scrollBehavior: const CupertinoScrollBehavior(),
       routerDelegate: RoutemasterDelegate(
         routesBuilder: (context) => RouteMap(
           routes: {
@@ -156,14 +130,13 @@ class _MyHomePageState extends State<MyHomePage> {
     final stack = pageState.stacks[selectedIndex];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Bal"),
-      ),
       body: PageStackNavigator(
         key: ValueKey(selectedIndex),
         stack: stack,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 28,
+        backgroundColor: Colors.white,
         currentIndex: selectedIndex,
         onTap: (index) {
           setState(() {
@@ -181,12 +154,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -19,8 +19,8 @@ class NoticeStream {
     );
     _socket.onError((error) => _streamController.addError(error));
 
-    _socket.emit('notice:find');
-    _socket.on('notice:find', (data) => print(data));
+    _socket.emit('notice:initial');
+    _socket.on('notice:initial', (data) => print(data));
 
     final notices = await _client.notices();
     print(notices);

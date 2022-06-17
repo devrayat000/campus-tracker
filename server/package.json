@@ -11,9 +11,12 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-i18n": "4.2.0",
-    "@strapi/plugin-users-permissions": "4.2.0",
-    "@strapi/strapi": "4.2.0",
+    "@exfabrica/strapi-plugin-awesome-help": "^1.0.8",
+    "@offset-dev/strapi-calendar": "^0.0.6",
+    "@strapi/plugin-i18n": "^4.2.0",
+    "@strapi/plugin-seo": "^1.7.3",
+    "@strapi/plugin-users-permissions": "^4.2.0",
+    "@strapi/strapi": "^4.2.0",
     "pg": "8.6.0",
     "strapi-plugin-io": "^1.1.1"
   },
@@ -24,7 +27,7 @@
     "uuid": "5ca22060-2a50-4049-8a8f-45e8714a15f3"
   },
   "engines": {
-    "node": ">=12.x.x <=16.x.x",
+    "node": ">=15.x.x <=17.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

@@ -42,6 +42,7 @@ class IntroPage extends StatelessWidget {
 
   void getStarted(BuildContext context) async {
     await askForPermission();
+    BlocProvider.of<FirstTimeCubit>(context).getStarted();
     Routemaster.of(context).replace('/home');
   }
 }
