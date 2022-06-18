@@ -1,4 +1,3 @@
-import 'package:campus_tracker/src/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:campus_tracker/src/config.dart';
 import 'package:campus_tracker/src/bloc/first_time.dart';
 import 'package:campus_tracker/src/services/notification/notification_service.dart';
 import 'package:campus_tracker/src/services/socket/socket_service.dart';
@@ -30,6 +30,10 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('notice_notified');
 
+  final socketService = SocketService();
+
+  final noticeSocket = NoticeSocket(socketService);
+
   HydratedBlocOverrides.runZoned(
     storage: storage,
     () => runApp(
@@ -39,22 +43,14 @@ void main() async {
               create: (_) => NoticeClient(dio, baseUrl: AppConfig.apiUrl)),
           RepositoryProvider<TestClient>(
               create: (_) => TestClient(dio, baseUrl: AppConfig.apiUrl)),
-          RepositoryProvider<SocketService>(
-            create: (_) => SocketService(),
-            lazy: false,
-          ),
-          // RepositoryProvider<NoticeStream>(
-          //   create: (context) => NoticeStream(
-          //     RepositoryProvider.of<SocketService>(context),
-          //     RepositoryProvider.of<NoticeClient>(context),
-          //   ),
-          // ),
+          RepositoryProvider<SocketService>.value(value: socketService),
+          RepositoryProvider<NoticeSocket>.value(value: noticeSocket),
         ],
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
                 create: (context) =>
-                    NoticeCubit(RepositoryProvider.of<SocketService>(context))),
+                    NoticeCubit(RepositoryProvider.of<NoticeSocket>(context))),
             BlocProvider(
               create: (context) => FirstTimeCubit(),
             ),
